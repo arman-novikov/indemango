@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+
+<head>
+    <!-- bootstrap -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <!-- bootstrap slider -->
+    <link rel="stylesheet" href="lib/bootstrap-slider/css/bootstrap-slider.min.css">
+
+    <!-- jQuery -->
+    <script src="lib/jQuery/jquery.min.js"></script>
+    
+    <!-- MQTT -->
+    <script src="lib/jsMQTT/mqttws31.js"></script>
+
+    <!-- <link rel="stylesheet" href="lib/font-awesome/font-awesome.min.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    
+    <!-- App -->
+    <script src="debug.js"></script>
+    
+    <title>ERPanel Debug</title>
+</head>
+
+<body>
+    <h1>DEBUG</h1>
+
+    <br>
+    <div id="riddlename" style="font-size: 24px;"></div>
+
+    <div>
+       <select class="form-control">
+           <option value="ledstrip">Ledstrip</option>
+           <option value="cpz">CPZ</option>
+       </select>
+       <input type="text" name="itemname" value="4" class="form-control">
+       <button onclick="ui_blockRiddleEdit_onCancel()" type="button" class="btn btn-default">Test</button>
+    </div>
+
+    <div id="controls"></div>
+
+    <button onclick="ui_onAdd()" type="button" class="btn btn-default">Add</button>
+
+    <!-- bootstrap -->
+    <!-- <script src="http://code.jquery.com/jquery.min.js"></script> -->
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+    <!-- bootstrap slider -->
+    <script src="lib/bootstrap-slider/js/bootstrap-slider.min.js"></script>
+</body>
+
+</html>

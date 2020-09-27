@@ -1,0 +1,59 @@
+
+config interface 'loopback'
+	option ifname 'lo'
+	option proto 'static'
+	option ipaddr '127.0.0.1'
+	option netmask '255.0.0.0'
+
+config globals 'globals'
+	option ula_prefix 'fd9f:a567:54da::/48'
+
+config interface 'lan'
+	option type 'bridge'
+	option ifname 'eth0.1'
+	option proto 'static'
+	option netmask '255.255.255.0'
+	option ip6assign '60'
+	option hostname 'GL-MT300N-V2-8f7'
+	option ipaddr '192.168.10.1'
+
+config interface 'wan'
+	option ifname 'eth0.2'
+	option proto 'dhcp'
+	option hostname 'GL-MT300N-V2-8f7'
+
+config device 'wan_dev'
+	option name 'eth0.2'
+	option macaddr 'e4:95:6e:47:d8:f7'
+
+config interface 'wan6'
+	option ifname 'eth0.2'
+	option proto 'dhcpv6'
+
+config switch
+	option name 'switch0'
+	option reset '1'
+	option enable_vlan '1'
+
+config switch_vlan
+	option device 'switch0'
+	option vlan '1'
+	option ports '1 6t'
+
+config switch_vlan
+	option device 'switch0'
+	option vlan '2'
+	option ports '0 6t'
+
+config interface 'guest'
+	option ifname 'guest'
+	option type 'bridge'
+	option proto 'static'
+	option ipaddr '192.168.9.1'
+	option netmask '255.255.255.0'
+	option ip6assign '60'
+
+config interface 'wwan'
+	option proto 'dhcp'
+	option metric '20'
+

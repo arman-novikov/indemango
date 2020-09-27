@@ -1,0 +1,12 @@
+python2 ./gl_image -p mt300n-v2 -e "openssh-sftp-server nano htop"
+
+python2 ./gl_image -p mt300n-v2 -e "openssh-sftp-server nano htop mosquitto-ssl mosquitto-client-ssl libmosquitto-ssl"
+
+python2 ./gl_image -p mt300n-v2 -e "openssh-sftp-server nano htop mosquitto-ssl mosquitto-client-ssl libmosquitto-ssl openvpn-openssl luci-app-openvpn"
+
+python2 ./gl_image -p mt300n-v2 -e "openssh-sftp-server nano htop mosquitto-ssl mosquitto-client-ssl libmosquitto-ssl openvpn-openssl luci-app-openvpn avrdude luci-app-commands"
+
+
+python2 ./gl_image -c customize.json -p mt300n-v2 -e "openssh-sftp-server nano htop mosquitto-ssl mosquitto-client-ssl libmosquitto-ssl openvpn-openssl luci-app-openvpn avrdude luci-app-commands"
+
+python2 ./gl_image -c indes.json -p indemango -e "openssh-sftp-server nano htop mosquitto-ssl mosquitto-client-ssl libmosquitto-ssl openvpn-openssl luci-app-openvpn avrdude luci-app-commands atftp"

@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+
+<head>
+  <!-- bootstrap -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+
+  <!-- jQuery -->
+  <script src="lib/jQuery/jquery.min.js"></script>
+  
+  <title>ERPanel</title>
+
+
+  <style type="text/css">
+  /*@import url(https://fonts.googleapis.com/css?family=Roboto:300);*/
+  /*@import url(fonts/Roboto/Roboto-Light.ttf);*/
+
+  .form {
+    /*position: relative;*/
+    z-index: 1;
+    background: #FFFFFF;
+    /*max-width: 360px;*/
+    /*margin: 0 auto 100px;*/
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  }
+
+  .form input {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+
+  .form button {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #9992CA;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+  }
+
+  .form button:hover,
+  .form button:active,
+  .form button:focus {
+    background: #8982BA;
+  }
+
+  body {
+    background: #9992CA;
+    font-family: "Roboto", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  </style>
+  <!-- jQuery -->
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function() {
+    $("#btn-send").click(function() {
+
+      //  check login and pass  //
+      if ($("#input-username").val().toLowerCase() == "indestroom" &&
+        $("#input-password").val().toLowerCase() == "indestroom") {
+        location.href = '/main.html';
+      }
+    });
+  });
+  </script>
+</head>
+
+<body>
+  <br>
+  <br>
+  <br>
+  <div class="container">
+    <div class="col-lg-6 col-lg-offset-3 
+                  col-md-6 col-md-offset-3 
+                  col-sm-12 
+                  col-xs-12">
+      <div class="form">
+        <img src="/logo.png" class="img-responsive">
+        <br>
+        <br>
+        <input id="input-username" type="text" placeholder="username" />
+        <input id="input-password" type="password" placeholder="password" />
+        <button id="btn-send">login</button>
+      </div>
+    </div>
+  </div>
+  <!-- bootstrap -->
+  <!-- <script src="http://code.jquery.com/jquery.min.js"></script> -->
+  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+</body>
+
+</html>

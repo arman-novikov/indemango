@@ -1,0 +1,6 @@
+
+config client 'ovpn0'
+	option description 'quests'
+	option path '/etc/openvpn/ovpn0'
+	option defaultserver 'new_firmware.ovpn'
+

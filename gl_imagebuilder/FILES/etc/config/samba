@@ -1,0 +1,7 @@
+
+config samba
+	option workgroup 'WORKGROUP'
+	option homes '1'
+	option name 'GL-MT300N-V2'
+	option description 'GL-MT300N-V2-8f7'
+

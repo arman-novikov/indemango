@@ -1,0 +1,249 @@
+<!doctype html>
+<html>
+
+<head>
+    <!-- bootstrap -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
+
+    <!-- bootstrap slider -->
+    <link rel="stylesheet" href="lib/bootstrap-slider/css/bootstrap-slider.min.css">
+
+    <!-- jQuery -->
+    <script src="lib/jQuery/jquery.min.js"></script>
+    
+    <!-- MQTT -->
+    <script src="lib/jsMQTT/mqttws31.js"></script>
+
+    <!-- App -->
+    <link rel="stylesheet" href="app.css">
+    <script src="helper.js"></script>
+    <script src="riddlesinfo.js"></script>
+    <script src="soundlist.js"></script>
+    <script src="gameslist.js"></script>
+    <script src="mc1.js"></script>
+    <script src="mc2.js"></script>
+    <script src="app_6.js"></script>
+
+    
+    <title>ERPanel</title>
+</head>
+
+<body>
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <span class="navbar-brand">ERPanel v1.12.5</span>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a id="nav-props" href="#props">PROPS   </a></li>
+                    <li><a id="nav-sound" href="#sound">SOUND   </a></li>
+                    <li><a id="nav-logs"  href="#logs" >SETTINGS</a></li>
+                    <li><a id="nav-exit"  href="#exit" >EXIT    </a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+        <!-- PROPS -->
+        <div id="data-props">
+            <div class="row content-center">
+            <br>
+            <div class="ds-txt-timer" id="game_time" value = "45" >00:00</div>
+            <div class="ds-txt-title"><b>PROPS</b></div>
+
+            <br>
+        </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-3 col-lg-offset-3 col-md-3 col-md-offset-3 col-sm-6 col-xs-6" style="padding: 10px;">
+                    <button id="btnStart" class="ds-btn ds-btn-violet" style="font-size: 16px;" value = "rasp_timer_offline" >START GAME</button>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6" style="padding: 10px;">
+                    <button id="btnResetAll" class="ds-btn ds-btn-red" style="font-size: 16px;">RESET ALL</button>
+                </div>
+
+            </div>
+
+            <ul id="ul-riddles" class="ds-ul">
+            </ul>
+    
+        </div>
+        
+        <!-- SOUND -->
+        <div id="data-sound">
+            
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+
+                <!-- sound controller -->
+                <div class="ds-panel">
+                    <div class="ds-txt-title"><b>SOUND CONTROLLER</b></div>
+                    <br> 
+                    <!-- Volume  -->
+                    <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <span class="txt-sound-vol" id="mc1_vol_value">Volume: 60</span>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <input id="mc1_sliderVol" data-slider-id='mc1Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="10" data-slider-value="60" data-slider-tooltip="hide" class="slider-vol"/>
+                    </div>
+                    </div>
+                    <!-- btns -->
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <button class="btn-sound-pause" id="mc1-btn-pause">PAUSE</button>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <button class="btn-sound-pause" id="mc1-btn-resume">RESUME</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- background music -->
+                <div class="ds-panel">
+                    <div class="ds-txt-title"><b>BACKGROUND MUSIC</b></div>
+                    <br> 
+                    <!-- Volume  -->
+                    <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <span class="txt-sound-vol" id="mc2_vol_value">Volume: 60</span>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <input id="mc2_sliderVol" data-slider-id='mc2Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="10" data-slider-value="60" data-slider-tooltip="hide" class="slider-vol"/>
+                    </div>
+                    </div>
+                    <!-- btns -->
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <button class="btn-sound-pause" id="mc2-btn-pause">PAUSE</button>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <button class="btn-sound-pause" id="mc2-btn-resume">RESUME</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- sound list -->
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="ds-panel">
+                    <div class="ds-txt-title"><b>SOUND LIST</b></div>
+                    <div id="sound-list"></div>
+                </div>
+            </div>
+        </div>
+        <!-- SOUND -->
+
+        <!-- LOGS -->
+        <div id="data-logs">
+            <ul class="list-group">
+                <li class="list-group-item disabled">System info</li>
+
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div>Language:</div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                            <div class="dropdown lang-select">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
+                                    <span id="lang-current">English</span>
+                                    <span class="caret"></span></button>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick='langset(1)'>English</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick='langset(2)'>Language 2</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick='langset(3)'>Language 3</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick='langset(4)'>Language 4</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick='langset(5)'>Language 5</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </li>
+
+                
+                <li class="list-group-item">
+                    <span id="setLevel"></span>
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div>Level:</div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                            <div class="dropdown level-select">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="menu2" data-toggle="dropdown"><span id="level-current">basic</span>
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="menu2">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick='levelset(1)'>basic</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick='levelset(2)'>advanced</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div>Time:</div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                            <div class="dropdown time-select">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="menu3" data-toggle="dropdown"><span id="time-current" value = "60">60:00</span>
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="menu3">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick='timeset(8)'>80:00</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick='timeset(7)'>70:00</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick='timeset(1)'>60:00</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick='timeset(2)'>55:00</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick='timeset(3)'>50:00</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick='timeset(4)'>45:00</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick='timeset(5)'>30:00</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick='timeset(6)'>01:00</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </li>
+            </ul>
+
+
+
+            <ul class="list-group" id="div-logs">
+                <li class="list-group-item disabled">System logs</li>
+            </ul>
+        </div>
+        <!-- LOGS -->
+
+        <!-- STAT -->
+        <div id="data-stat">
+            <div class="ds-txt-title"><b>STATISTICS</b></div>
+            <div id="stat-list"></div>
+        </div>
+        <!-- STAT -->
+    </div>
+    <!-- CONTAINER -->
+    
+    <br>
+    <br>
+    
+    <!-- bootstrap -->
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <!-- bootstrap slider -->
+    <script src="lib/bootstrap-slider/js/bootstrap-slider.min.js"></script>
+</body>
+
+</html>

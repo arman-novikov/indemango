@@ -1,0 +1,3 @@
+config service 'general'
+	option terminal_update_interval '14400'
+	option cleartraffic '0'  
