@@ -135,8 +135,6 @@ $(document).ready(function() {
     is_decrease_time = true;
     is_timer_start = true;
     logs_log("User: Start game");
-    mqtt_publish("start", "/er/cmd");
-
 
     if ($("#btnStart").val() == "rasp_timer_offline"){
       if (localStorage.getItem("timer_start") == "true") {
@@ -155,6 +153,7 @@ $(document).ready(function() {
     $("#menu2").attr("disabled", true);
     $("#menu3").attr("disabled", true);
     mqtt_publish(game_period_min.toString(), "/er/timer/period");
+    mqtt_publish("start", "/er/cmd");
   });
 
   $("#btnResetAll").click(function() {
